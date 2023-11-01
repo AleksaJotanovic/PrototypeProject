@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <div class="container mt-4">
+    <div class="card p-5">
+      <h1>Student Registration</h1>
+      <form class="d-flex flex-column gap-4">
+        <div class="form-group">
+          <label>Student Name:</label>
+          <input type="text" [(ngModel)]="name" [ngModelOptions]="{standalone: true}"
+            class="form-control rounded-0 shadow-sm" id="name">
+        </div>
+        <div class="form-group">
+          <label>Course:</label>
+          <input type="text" [(ngModel)]="course" [ngModelOptions]="{standalone: true}"
+            class="form-control rounded-0 shadow-sm" id="course">
+        </div>
+        <div class="form-group">
+          <label>Student's Fee:</label>
+          <input type="text" [(ngModel)]="fee" [ngModelOptions]="{standalone: true}"
+            class="form-control rounded-0 shadow-sm" id="fee">
+        </div>
+        <button type="submit" class="btn btn-outline-primary rounded-0" (click)="save()">Save</button>
+      </form>
+    </div>
+  </div>
+  <div class="container mt-4">
+    <h1>Students Table</h1>
+    <table class="table table-striped table-light">
+      <thead>
+        <p *ngIf="!isStudentsLoaded">LOADING...</p>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Course</th>
+          <th scope="col">Fee</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students">
+          <th scope="row">{{student.id}}</th>
+          <td>{{student.name}}</td>
+          <td>{{student.course}}</td>
+          <td>{{student.fee}}</td>
+          <td class="d-flex justify-content-center gap-3">
+            <button type="button" class="btn btn-sm btn-outline-warning rounded-0" (click)="update(student)"><i
+                class="bi bi-pencil-square"></i></button>
+            <button type="button" class="btn btn-sm btn-outline-danger rounded-0" (click)="delete(student)"><i
+                class="bi bi-trash3-fill"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
